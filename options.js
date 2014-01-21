@@ -44,7 +44,6 @@ function clearInfo() {
 }
 
 function addReminderTask(task) {
-    console.log(task);
     var tasks;
     if (localStorage['reminderTasks']) {
         tasks = JSON.parse(localStorage['reminderTasks']);
@@ -58,8 +57,6 @@ function addReminderTask(task) {
     }
     tasks[task['name']] = task;
     localStorage['reminderTasks'] = JSON.stringify(tasks);
-    console.log(localStorage['reminderTasks']);
-    console.log(localStorage);
     showReminderTasks();
 }
 function clearReminderTasks() {
