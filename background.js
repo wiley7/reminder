@@ -13,6 +13,7 @@ function show(info) {
 }
 
 var tasks;
+var taskIntervIds = {};
 
 // need daily or weekly or yearly
 
@@ -25,15 +26,21 @@ function initTasks() {
     }
 }
 
+function clearIntervals() {
+    for(taskid in taskIntervIds) {
+        self.clearInterval(taskIntervIds[taskid]);
+    }
+}
+
 function addNotifications() {
     // clear Interval
     for (taskid in tasks) {
         var task = tasks[taskid];
-        if (task['intervalId']) {
-            self.clearInterval(task['intervalId']);
+        if (taskIntervIds[taskid]) {
+            self.clearInterval(taskIntervIds[taskid]);
         }
         if (task['cycle']['type'] == 'daily') {
-            tasks[taskid]['intervalId'] = self.setInterval(function(){
+            taskIntervIds[taskid] = self.setInterval(function(){
                 var date = new Date();
                 var hour = date.getHours();
                 var min = date.getMinutes();
@@ -85,6 +92,7 @@ chrome.extension.onRequest.addListener(
     function (request,sender,callback) {
         if (request.command == "update"){
             initTasks();
+            clearIntervals();
             addNotifications();
             callback({s:'ok',msg:"update tasks"});
         }
