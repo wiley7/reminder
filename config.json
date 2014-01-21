@@ -1,0 +1,11 @@
+{
+    'dinner':{
+        'title': '晚饭',
+        'body': '点击前往订餐',
+        'cycle': {
+            'type': 'daily',
+            'h': 15,
+            'min': 39,
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<script type='text/javascript' src='jquery.min.js'></script>
+<script type='text/javascript' src='c.js'></script>
+<link rel='stylesheet' href='style.css'></script>
+<h2>Current Tasks</h2>
+<div id=Canvas>
+</div>
+<br/>
+<h2>New Task</h2>
+<div class=add>
+    <table class=addinfo>
+    <tr><td>name:</td><td><input type=text id=add_name></td></tr>
+    <tr><td>title:</td><td><input type=text id=add_title><br/></td></tr>
+    <tr><td>body:</td><td><input type=text id=add_body><br/></td></tr>
+    <tr><td>url:</td><td><input type=text id=add_url><br/></td></tr>
+    <tr><td>cycle-type:</td><td><select id=add_cycle_type>
+        <option value='none'></option>
+        <option value='daily'>daily</option>
+        <option value='weekly'>weekly</option>
+        <option value='monthly'>monthly</option>
+        <option value='yearly'>yearly</option>
+    </select><br/></td></tr>
+</table>
+<table class=cycleinfo>
+</table>
+    <button class=btnadd >增加</button><br/>
+</div>
+<br/>
+<h2>Del Task</h2>
+name:<input type=text id=del_name><button class=btndel>移除</button>
+<script type='text/javascript' src=options.js ></script>

@@ -1,0 +1,16 @@
+{
+  "name": "Reminder",
+  "version": "1.0",
+  "icons": {"default": "logo.png"},
+  "description": "Remind me something",
+  "permissions": ["notifications"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "options_page": "options.html",
+
+  "manifest_version": 2,
+  "web_accessible_resources": [
+    "logo.png"
+  ]
+}
