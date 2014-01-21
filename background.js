@@ -17,6 +17,7 @@ var tasks;
 // need daily or weekly or yearly
 
 function initTasks() {
+    tasks = null;
     if (localStorage['reminderTasks']){
         tasks = JSON.parse(localStorage['reminderTasks']);
     }else{
@@ -25,10 +26,14 @@ function initTasks() {
 }
 
 function addNotifications() {
+    // clear Interval
     for (taskid in tasks) {
         var task = tasks[taskid];
+        if (task['intervalId']) {
+            self.clearInterval(task['intervalId']);
+        }
         if (task['cycle']['type'] == 'daily') {
-            self.setInterval(function(){
+            tasks[taskid]['intervalId'] = self.setInterval(function(){
                 var date = new Date();
                 var hour = date.getHours();
                 var min = date.getMinutes();
@@ -72,13 +77,16 @@ function addNotifications() {
     }
 }
 
-function prepareDb(ready, error) {
-    return openDatabase('tasks', '1.0', 'the reminder tasks', 5 * 1024 * 1024, function (db) {
-        db.changeVersion('', '1.0', function (t) {
-            t.executeSql('CREATE TABLE tasks (name, desc, title, body, url)');
-        }, error);
-    });
-}
 
 initTasks();
 addNotifications();
+
+chrome.extension.onRequest.addListener(
+    function (request,sender,callback) {
+        if (request.command == "update"){
+            initTasks();
+            addNotifications();
+            callback({s:'ok',msg:"update tasks"});
+        }
+    }
+);

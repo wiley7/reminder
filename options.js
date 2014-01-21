@@ -114,14 +114,19 @@ function getYearlyHtml() {
 function onBtnAddClick() {
     addReminderTask(getNewTaskInfo());
     clearInfo();
+    chrome.extension.sendRequest({command: "update"}, extensioncallback);
 }
 
 function onBtnDelClick() {
     var name = document.getElementById('del_name').value;
     if (name != ''){
         removeReminderTask(name);
+        chrome.extension.sendRequest({command: "update"}, extensioncallback);
     }
     document.getElementById('del_name').value = null;
+}
+function extensioncallback(data) {
+    console.log(data);
 }
 
 showReminderTasks();
