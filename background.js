@@ -44,7 +44,7 @@ function addNotifications() {
                 var date = new Date();
                 var hour = date.getHours();
                 var min = date.getMinutes();
-                console.log(hour + ":" + min);
+                //console.log(hour + ":" + min);
                 if (!task['finished'] && task['cycle']['h'] == hour && task['cycle']['min'] == min){
                     show(task);
                 }
@@ -54,7 +54,7 @@ function addNotifications() {
                 var date = new Date();
                 var day  = date.getDay();// 0-6, 0 表示星期日
                 var hour = date.getHours();
-                console.log(day + " " + hour);
+                //console.log(day + " " + hour);
                 if (!task['finished'] && task['cycle']['wd'] == day && task['cycle']['h'] == hour) {
                     show(task);
                 }
@@ -64,7 +64,7 @@ function addNotifications() {
                 var date = new Date();
                 var day  = date.getDate();
                 var hour = date.getHours();
-                console.log(day + " " + hour);
+                //console.log(day + " " + hour);
                 if (!task['finished'] && task['cycle']['d'] == day && task['cycle']['h'] == hour) {
                     show(task);
                 }
